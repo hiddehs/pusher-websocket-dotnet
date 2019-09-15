@@ -19,7 +19,25 @@
         /// Gets or sets the Cluster to user for the Host
         /// </summary>
         public string Cluster { get; set; } = "mt1";
-
-        internal string Host => $"ws-{Cluster}.pusher.com";
+        
+        private string _host;
+        public string Host
+        {
+            get
+            {
+                if (_host != null)
+                {
+                    return _host;
+                }
+                else
+                {
+                    return "ws-" + this.Cluster + ".pusher.com";
+                }
+            }
+            set
+            {
+                _host = value;
+            }
+        }
     }
 }
